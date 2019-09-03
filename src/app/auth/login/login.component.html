@@ -1,0 +1,16 @@
+<!-- <h3 *ngIf="user">Current User is {{user.displayName}}</h3> -->
+<!-- <button *ngIf="!user" (click)="loginGoogle()">Login With Google</button> -->
+<!-- <button *ngIf="user" (click)="logout()">Logout</button> -->
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Email" />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Password" />
+  </mat-form-field>
+  <button mat-raised-button>Sign in</button>
+  <button mat-raised-button (click)="loginGoogle()">Sign in with google</button>
+  <button mat-raised-button>
+    <a routerLink="/sign-up">New here? Register. </a>
+  </button>
+</div>

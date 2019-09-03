@@ -1,0 +1,12 @@
+<form [formGroup]="singInForm" (ngSubmit)="onSubmit()">
+  <label>
+    Email:
+    <span><input mat-menu-item type="email" formControlName="email"/></span>
+  </label>
+
+  <label>
+    Password:
+    <span> <input type="password" formControlName="password"/></span>
+  </label>
+  <button mat-button type="submit"><span> Login </span></button>
+</form>
