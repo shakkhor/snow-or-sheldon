@@ -1,1 +1,91 @@
-<p>set-test works!</p>
+<form [formGroup]="myQuiz">
+  Value :{{myQuiz.value | json}}
+
+  <hr />
+
+  <mat-form-field class="full">
+    <input
+      matInput
+      type="text"
+      placeholder="Quiz Title"
+      formControlName="title"
+    />
+  </mat-form-field>
+  <div formArrayName="questions">
+    <div
+      *ngFor=" let qustion of questionForms.controls; let i=index "
+      [formGroupName]="i"
+    >
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="question"
+          formControlName="question"
+          value=""
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="option1"
+          formControlName="option1"
+          value=""
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="option2"
+          formControlName="option2"
+          value=""
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="option3"
+          formControlName="option3"
+          value=""
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="option4"
+          formControlName="option4"
+          value=""
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Correct answer</mat-label>
+        <mat-select>
+          <mat-option>
+            option1
+          </mat-option>
+          <mat-option>
+            option2
+          </mat-option>
+          <mat-option>
+            option3
+          </mat-option>
+          <mat-option>
+            option4
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="warn" (click)="deleteQuestion(i)">
+        Delete question
+      </button>
+    </div>
+    <button mat-raised-button color="primary" (click)="addQuestion()">
+      Add question
+    </button>
+  </div>
+</form>
