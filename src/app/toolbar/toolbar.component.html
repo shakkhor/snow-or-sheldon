@@ -11,6 +11,9 @@
   <a routerLink="/set-test"
     ><button mat-button *ngIf="user"><strong>Set Test</strong></button></a
   >
+  <a routerLink="/login"
+    ><button mat-button *ngIf="!user"><strong>Sign in</strong></button></a
+  >
   <button
     mat-mini-fab
     [matMenuTriggerFor]="avatarDropDown"

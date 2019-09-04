@@ -1,8 +1,16 @@
 <div class="example-container">
   <mat-form-field>
     <!-- <mat-icon>email</mat-icon> -->
-    <input matInput placeholder="Email" type="email" required />
-    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    <input
+      matInput
+      placeholder="Email"
+      type="email"
+      required
+      [formControl]="email"
+    />
+    <mat-error *ngIf="email.invalid">
+      <div *ngIf="email.hasError('required')">Email is requred</div>
+    </mat-error>
   </mat-form-field>
   <mat-form-field>
     <!-- <mat-icon>vpn_key</mat-icon>  -->
@@ -12,7 +20,9 @@
       type="password"
       required
       [type]="hide ? 'password' : 'text'"
+      [formControl]="password"
     />
+    <mat-error *ngIf="password.invalid">{{getErrorMessagePass()}}</mat-error>
     <button
       mat-icon-button
       matSuffix
@@ -23,5 +33,41 @@
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
   </mat-form-field>
-  <button mat-raised-button (click)="signUp()">Sign up</button>
+
+  <mat-form-field>
+    <!-- <mat-icon>vpn_key</mat-icon>  -->
+    <input
+      matInput
+      placeholder="Confirm password"
+      type="password"
+      required
+      [type]="hide ? 'password' : 'text'"
+      [formControl]="confirmPassword"
+      (keyup)="getMatch()"
+    />
+    <mat-error *ngIf="confirmPassword.invalid "
+      >{{getErrConfirmPass()}}</mat-error
+    >
+    <span *ngIf="confirmPassword.touched && !match"
+      ><mat-error>Password did not match </mat-error></span
+    >
+
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    (click)="signUp()"
+    [disabled]=" password.invalid || confirmPassword.invalid || email.invalid || !match"
+  >
+    Sign up
+  </button>
 </div>

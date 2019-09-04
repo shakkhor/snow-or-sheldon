@@ -1,4 +1,6 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../auth/login.service';
 
 @Component({
   selector: 'app-take-test',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./take-test.component.css']
 })
 export class TakeTestComponent implements OnInit {
-
-  constructor() { }
+  user : firebase.User;
+  constructor(
+    private loginService : LoginService,
+    private router : Router
+  ) { }
 
   ngOnInit() {
-  }
+    this.loginService.getLoggedInUser()
+    .subscribe(user =>{
+      this.user = user;
+      if(!user){
+           this.router.navigateByUrl('/take-test');
+      }
+   })
+ }
 
 }

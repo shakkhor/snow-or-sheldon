@@ -3,12 +3,38 @@
 <!-- <button *ngIf="user" (click)="logout()">Logout</button> -->
 <div class="example-container">
   <mat-form-field>
-    <input matInput placeholder="Email" />
+    <!-- <mat-icon>email</mat-icon> -->
+    <input
+      matInput
+      placeholder="Email"
+      type="email"
+      required
+      [formControl]="email"
+    />
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Password" />
+    <!-- <mat-icon>vpn_key</mat-icon>  -->
+    <input
+      matInput
+      placeholder="Password"
+      type="password"
+      required
+      [type]="hide ? 'password' : 'text'"
+      [formControl]="password"
+    />
+    <mat-error *ngIf="password.invalid">{{getErrorMessagePass()}}</mat-error>
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
   </mat-form-field>
-  <button mat-raised-button>Sign in</button>
+  <button mat-raised-button (click)="signIn()">Sign in</button>
   <button mat-raised-button (click)="loginGoogle()">Sign in with google</button>
   <button mat-raised-button>
     <a routerLink="/sign-up">New here? Register. </a>
