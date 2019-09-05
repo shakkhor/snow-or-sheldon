@@ -14,7 +14,7 @@ export class LoginService {
   ) { }
 
   login(){
-    this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider())  
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())  
 
     // this.afAuth.auth.getRedirectResult().then(function(authData) {
     //   console.log(authData);
@@ -39,7 +39,7 @@ export class LoginService {
   signUp(email, password){
     this.afAuth.auth.createUserWithEmailAndPassword(email, password)
     .then(result =>{
-      console.log(result)
+      console.log("hello" ,result.user.uid)
     })
       .catch(err =>{
         console.log(err);
@@ -49,7 +49,7 @@ export class LoginService {
   signIn(email, password){
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
     .then(result =>{
-      console.log(result);
+      console.log(result.user.uid);
     })
     .catch(err =>{
       console.log(err)

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import {AngularFireModule} from '@angular/fire'
+import {AngularFireDatabaseModule} from '@angular/fire/database'
 import {AngularFireAuthModule} from '@angular/fire/auth'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,7 +35,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule, 
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
