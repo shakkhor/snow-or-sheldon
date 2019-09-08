@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TakeTestComponent } from './take-test/take-test.component';
 import { SetTestComponent } from './set-test/set-test.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { UpdateTestComponent } from './update-test/update-test.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'take-test', component: TakeTestComponent},
   {path : 'set-test', component: SetTestComponent},
   {path: 'sign-up', component: SignUpComponent},
+  {path: 'update-test', component: UpdateTestComponent},
   {path:'**', component: LoginComponent}
 ];
 

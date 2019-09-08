@@ -2,6 +2,7 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@ang
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../auth/login.service';
 import { Router } from '@angular/router';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 @Component({
   selector: 'app-set-test',
@@ -11,11 +12,15 @@ import { Router } from '@angular/router';
 export class SetTestComponent implements OnInit {
   user : firebase.User;
   myQuiz : FormGroup;
+  tests : AngularFireList <any>;
   constructor(
     private loginService : LoginService,
     private router : Router,
-    private fb : FormBuilder
-  ) { }
+    private fb : FormBuilder,
+    private db : AngularFireDatabase
+  ) { this.tests =  this.db.list('/tests')
+  
+}
 
   ngOnInit() {
     this.loginService.getLoggedInUser()
@@ -33,6 +38,7 @@ export class SetTestComponent implements OnInit {
 
    this.myQuiz = this.fb.group({
      title : ['', Validators.required],
+     uid : ['', Validators.required],
      questions : this.fb.array([])
    })
  }
@@ -59,4 +65,15 @@ export class SetTestComponent implements OnInit {
    this.questionForms.removeAt(i);
  }
 
+
+ onSubmit(){
+  // this.myQuiz. = this.user.uid; 
+  let sub = this.myQuiz.value;
+  sub.uid = this.user.uid
+   sub = JSON.parse(JSON.stringify(sub))
+   
+   console.log("subs",sub);
+    this.tests.push(sub)
+   //console.log(this.user.uid);
+ }
 }

@@ -16,6 +16,7 @@ import { TakeTestComponent } from './take-test/take-test.component';
 import { SignInComponent } from './signIn/singin.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { UpdateTestComponent } from './update-test/update-test.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     SetTestComponent,
     TakeTestComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    UpdateTestComponent
   ],
   imports: [
     BrowserModule,
