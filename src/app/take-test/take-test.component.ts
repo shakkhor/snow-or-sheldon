@@ -1,10 +1,11 @@
+import { DialogComponent } from './../dialog/dialog.component';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Component, OnInit, Output } from '@angular/core';
 import { LoginService } from '../auth/login.service';
 import { SelectionChange } from '@angular/cdk/collections';
-import { MatSelectChange } from '@angular/material';
+import { MatSelectChange, MatDialog } from '@angular/material';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class TakeTestComponent implements OnInit {
     private loginService : LoginService,
     private router : Router,
     private fb : FormBuilder,
-    private db : AngularFireDatabase
+    private db : AngularFireDatabase,
+    private digalog : MatDialog
   ) { 
     this.db.list('/tests')
     .valueChanges()
@@ -52,6 +54,9 @@ export class TakeTestComponent implements OnInit {
    this.myQuiz = this.fb.group({
      
    })
+ }
+ openDialog(){
+   this.digalog.open(DialogComponent)
  }
 
 }

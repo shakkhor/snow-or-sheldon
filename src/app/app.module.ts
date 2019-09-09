@@ -17,6 +17,7 @@ import { SignInComponent } from './signIn/singin.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { UpdateTestComponent } from './update-test/update-test.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @NgModule({
@@ -28,7 +29,11 @@ import { UpdateTestComponent } from './update-test/update-test.component';
     TakeTestComponent,
     SignInComponent,
     SignUpComponent,
-    UpdateTestComponent
+    UpdateTestComponent,
+    DialogComponent
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   imports: [
     BrowserModule,
