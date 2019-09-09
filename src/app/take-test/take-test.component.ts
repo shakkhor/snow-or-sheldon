@@ -120,7 +120,7 @@ onSubmit(){
  console.log(rightAnswers)
  if(rightAnswers/length >= 0.8)
  {
-  this.openDialog('You are A Sheldon');
+  this.openDialog('sheldon');
  }else if(rightAnswers/length <= 0.4)
  {
   this.openDialog('You are A Snow');

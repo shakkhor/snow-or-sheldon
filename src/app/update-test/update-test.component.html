@@ -127,7 +127,10 @@
     </div>
   </form>
 
-  <button mat-raised-button (click)="onSubmit()">
-    Submit
+  <button *ngIf="test" mat-raised-button color="primary" (click)="update()">
+    Update
+  </button>
+  <button *ngIf="test" mat-raised-button color="warn" (click)="delete()">
+    Delete
   </button>
 </div>

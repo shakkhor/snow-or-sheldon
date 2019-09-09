@@ -130,4 +130,10 @@ onSubmit(){
   //console.log(this.user.uid);
 }
 
+
+update()
+{
+  console.log(this.selectedTest)
+}
+
 }
