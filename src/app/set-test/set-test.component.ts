@@ -10,6 +10,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
   styleUrls: ['./set-test.component.css']
 })
 export class SetTestComponent implements OnInit {
+  selected: [];
   user : firebase.User;
   myQuiz : FormGroup;
   tests : AngularFireList <any>;

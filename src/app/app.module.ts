@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { UpdateTestComponent } from './update-test/update-test.component';
 import { DialogComponent } from './dialog/dialog.component';
+import {FormsModule} from '@angular/forms'
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { DialogComponent } from './dialog/dialog.component';
     AngularFireAuthModule, 
     MaterialModule,
     ReactiveFormsModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
