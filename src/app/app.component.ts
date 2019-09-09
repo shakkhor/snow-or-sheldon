@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
  
-  title = 'AngularAuthFirebase';
+  title = 'Snow or Sheldon?';
   constructor(
     private afAuth : AngularFireAuth,
     private loginService : LoginService

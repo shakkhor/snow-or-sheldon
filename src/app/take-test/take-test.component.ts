@@ -86,8 +86,12 @@ setExistingQuestions() :FormArray{
   })
    
  }
- openDialog(){
-   this.digalog.open(DialogComponent)
+ openDialog(whoAmI){
+   this.digalog.open(DialogComponent,{
+     data:{
+       result : whoAmI
+     }
+   })
  }
 
 
@@ -114,8 +118,18 @@ onSubmit(){
    }
  })
  console.log(rightAnswers)
+ if(rightAnswers/length >= 0.8)
+ {
+  this.openDialog('You are A Sheldon');
+ }else if(rightAnswers/length <= 0.4)
+ {
+  this.openDialog('You are A Snow');
+ }
+ else{
+  this.openDialog('You are Normal');
+ }
 
- this.openDialog();
+ 
 
 }
 
