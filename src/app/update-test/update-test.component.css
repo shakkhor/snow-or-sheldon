@@ -1,0 +1,9 @@
+.set-questions{
+    margin-left: 20px 
+ }
+ mat-form-field{
+     margin: 10px;
+ }
+ mat-raised-button{
+     height: 20px;
+ }

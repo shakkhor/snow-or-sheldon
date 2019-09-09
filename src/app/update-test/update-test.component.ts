@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { LoginService } from '../auth/login.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
@@ -17,8 +17,9 @@ export class UpdateTestComponent implements OnInit {
   tests : any;
   JSON = JSON;
   selectedTest;
+  myQuiz : FormGroup;
 
-  myQuiz: FormGroup 
+  
   constructor(
     private loginService : LoginService,
     private router : Router,
@@ -32,12 +33,40 @@ export class UpdateTestComponent implements OnInit {
       this.tests = tests;
       console.log(tests)
     })
-   
+
+
+  
   }
   onSelectionChange = (change: any) => {
-    // debugger
-    this.selectedTest = change;
+       this.selectedTest = change;
+  
+
+    this.myQuiz.patchValue({
+      title: this.selectedTest.title, 
+      uid: this.selectedTest.uid,
+    })
+    this.myQuiz.setControl('questions', this.setExistingQuestions());
+
+    console.log(this.myQuiz.value)  
   }
+setExistingQuestions() :FormArray{
+  const formArray = new FormArray([]);
+  this.selectedTest.questions.forEach(q =>{
+    formArray.push(
+      this.fb.group({
+        question: q.question,
+        option1: q.option1,
+        option2: q.option2,
+        option3: q.option3,
+        option4: q.option4,
+        correctAnswer: q.correctAnswer
+      }))   
+  })
+
+  return formArray;
+
+}
+
 
   ngOnInit() {
     // debugger
@@ -49,12 +78,56 @@ export class UpdateTestComponent implements OnInit {
       }
    })
 
-   this.myQuiz = this.fb.group({
      
-   })
+   this.myQuiz = this.fb.group({
+    title : ['', Validators.required],
+    uid : ['', Validators.required],
+    questions : this.fb.array([])
+  })
+   
  }
  openDialog(){
    this.digalog.open(DialogComponent)
  }
+
+
+
+
+
+
+
+ get questionForms(){
+  return this.myQuiz.get('questions') as FormArray
+}
+
+addQuestion(){
+  const question = this.fb.group({
+    question: new FormControl( ['', Validators.required]),
+    option1: new FormControl( ['', Validators.required]),
+    option2: new FormControl( ['', Validators.required]),
+    option3: new FormControl( ['', Validators.required]),
+    option4: new FormControl( ['', Validators.required]),
+    correctAnswer: new FormControl( ['', Validators.required])
+  })
+  this.questionForms.push(question)
+}
+
+deleteQuestion(i)
+{
+  console.log(i)
+  this.questionForms.removeAt(i);
+}
+
+
+onSubmit(){
+ // this.myQuiz. = this.user.uid; 
+ let sub = this.myQuiz.value;
+ sub.uid = this.user.uid
+  sub = JSON.parse(JSON.stringify(sub))
+  
+  console.log("subs",sub);
+   this.tests.push(sub)
+  //console.log(this.user.uid);
+}
 
 }

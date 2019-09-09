@@ -6,22 +6,128 @@
     >
   </mat-select>
 </mat-form-field>
-<div *ngIf="test">
-  <p>hello</p>
 
-  <div *ngIf="selectedTest">
-    <div *ngFor="let question of selectedTest.questions">
-      <mat-card class="center"> {{question.question}}</mat-card>
-      <mat-card class="center">
-        <mat-radio-group aria-label="Select an option">
-          <mat-radio-button value="1">{{question.option1}}</mat-radio-button>
-          <mat-radio-button value="2">{{question.option2}}</mat-radio-button>
-          <mat-radio-button value="1">{{question.option3}}</mat-radio-button>
-          <mat-radio-button value="2">{{question.option4}}</mat-radio-button>
-        </mat-radio-group>
-      </mat-card>
+<div class="set-questions">
+  <form [formGroup]="myQuiz">
+    <!-- Value :{{myQuiz.value | json}} -->
+
+    <!-- <hr /> -->
+
+    <mat-form-field class="full" fxLayout="row" fxLayoutAlign="center">
+      <input
+        matInput
+        type="text"
+        placeholder="Quiz Title"
+        formControlName="title"
+        readonly
+      />
+      <mat-error
+        *ngIf="myQuiz.controls['title'].touched && myQuiz.controls['title'].errors.required"
+        >Must enter a title</mat-error
+      >
+    </mat-form-field>
+
+    <div formArrayName="questions">
+      <div
+        *ngFor=" let qustion of questionForms.controls; let i=index "
+        [formGroupName]="i"
+        fxLayout="row"
+        fxLayoutAlign="center"
+      >
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="question"
+            formControlName="question"
+            readonly
+          />
+          <!-- {{question | json}} -->
+          <!-- <mat-error *ngIf="question.invalid">
+             <div *ngIf="question.hasError('required')">Email is requred</div>
+            <h1>egwsgegwg</h1>
+          </mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="option1"
+            formControlName="option1"
+            readonly
+          />
+          <!-- <mat-error
+            *ngIf="myQuiz.i.controls['option1'].touched && myQuiz.i.controls['option1'].errors.required"
+            >Must enter a value</mat-error
+          > -->
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="option2"
+            formControlName="option2"
+            readonly
+          />
+          <!-- <mat-error
+            *ngIf="myQuiz.controls && myQuiz.controls['option2'].touched && myQuiz.controls['option2'].errors.required"
+            >Must enter a value</mat-error
+          > -->
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="option3"
+            formControlName="option3"
+            readonly
+          />
+          <!-- <mat-error
+            *ngIf="myQuiz.controls && myQuiz.controls['option3'].touched && myQuiz.controls['option3'].errors.required"
+            >Must enter a value</mat-error
+          > -->
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="option4"
+            formControlName="option4"
+            readonly
+          />
+          <!-- <mat-error
+            *ngIf="myQuiz.controls && myQuiz.controls['option4'].touched && myQuiz.controls['option4'].errors.required"
+            >Must enter a value</mat-error
+          > -->
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Correct answer</mat-label>
+          <mat-select formControlName="correctAnswer">
+            <mat-option value="a">
+              option1
+            </mat-option>
+            <mat-option value="b">
+              option2
+            </mat-option>
+            <mat-option value="c">
+              option3
+            </mat-option>
+            <mat-option value="d">
+              option4
+            </mat-option>
+          </mat-select>
+          <!-- <mat-error
+            *ngIf="myQuiz.controls && myQuiz.controls['correctAnswer'].touched && myQuiz.controls['correctAnswer'].errors.required"
+            >Must enter a value</mat-error
+          > -->
+        </mat-form-field>
+      </div>
     </div>
+  </form>
+  <div fxLayout="row" fxLayoutAlign="center">
+    <button mat-raised-button (click)="onSubmit()">
+      Submit
+    </button>
   </div>
 </div>
-
-<button mat-raised-button (click)="openDialog()">Check your result</button>

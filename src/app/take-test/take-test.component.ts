@@ -1,12 +1,10 @@
-import { DialogComponent } from './../dialog/dialog.component';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { LoginService } from '../auth/login.service';
-import { SelectionChange } from '@angular/cdk/collections';
-import { MatSelectChange, MatDialog } from '@angular/material';
-
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-take-test',
@@ -19,8 +17,9 @@ export class TakeTestComponent implements OnInit {
   tests : any;
   JSON = JSON;
   selectedTest;
+  myQuiz : FormGroup;
 
-  myQuiz: FormGroup 
+  
   constructor(
     private loginService : LoginService,
     private router : Router,
@@ -34,12 +33,40 @@ export class TakeTestComponent implements OnInit {
       this.tests = tests;
       console.log(tests)
     })
-   
+
+
+  
   }
   onSelectionChange = (change: any) => {
-    // debugger
-    this.selectedTest = change;
+       this.selectedTest = change;
+  
+
+    this.myQuiz.patchValue({
+      title: this.selectedTest.title, 
+      uid: this.selectedTest.uid,
+    })
+    this.myQuiz.setControl('questions', this.setExistingQuestions());
+
+    console.log(this.myQuiz.value)  
   }
+setExistingQuestions() :FormArray{
+  const formArray = new FormArray([]);
+  this.selectedTest.questions.forEach(q =>{
+    formArray.push(
+      this.fb.group({
+        question: q.question,
+        option1: q.option1,
+        option2: q.option2,
+        option3: q.option3,
+        option4: q.option4,
+        correctAnswer: ''
+      }))   
+  })
+
+  return formArray;
+
+}
+
 
   ngOnInit() {
     // debugger
@@ -51,12 +78,45 @@ export class TakeTestComponent implements OnInit {
       }
    })
 
-   this.myQuiz = this.fb.group({
      
-   })
+   this.myQuiz = this.fb.group({
+    title : ['', Validators.required],
+    uid : ['', Validators.required],
+    questions : this.fb.array([])
+  })
+   
  }
  openDialog(){
    this.digalog.open(DialogComponent)
  }
+
+
+
+
+
+
+
+ get questionForms(){
+  return this.myQuiz.get('questions') as FormArray
+}
+
+
+
+onSubmit(){
+ let  answers = this.myQuiz.value.questions
+ let i = 0;
+ let length = answers.length
+ console.log(length)
+ let rightAnswers = 0;
+ this.selectedTest.questions.forEach(q =>{
+   if(q.correctAnswer == answers[i++].correctAnswer){
+     rightAnswers++;
+   }
+ })
+ console.log(rightAnswers)
+
+ this.openDialog();
+
+}
 
 }

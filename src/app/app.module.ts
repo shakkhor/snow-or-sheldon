@@ -19,6 +19,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { UpdateTestComponent } from './update-test/update-test.component';
 import { DialogComponent } from './dialog/dialog.component';
 import {FormsModule} from '@angular/forms'
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {FormsModule} from '@angular/forms'
     MaterialModule,
     ReactiveFormsModule,
     AngularFireDatabaseModule,
-    FormsModule
+    FormsModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
