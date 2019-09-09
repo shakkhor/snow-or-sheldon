@@ -102,7 +102,7 @@
           > -->
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Correct answer</mat-label>
+          <mat-label>Choose the correct option</mat-label>
           <mat-select formControlName="correctAnswer">
             <mat-option value="a">
               option1
@@ -126,8 +126,8 @@
     </div>
   </form>
   <div fxLayout="row" fxLayoutAlign="center">
-    <button mat-raised-button (click)="onSubmit()">
-      Submit
+    <button *ngIf="test" mat-raised-button color="primary" (click)="onSubmit()">
+      See your result
     </button>
   </div>
 </div>
