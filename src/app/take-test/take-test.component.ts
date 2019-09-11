@@ -18,6 +18,7 @@ export class TakeTestComponent implements OnInit {
   JSON = JSON;
   selectedTest;
   myQuiz : FormGroup;
+  
 
   
   constructor(
@@ -45,6 +46,7 @@ export class TakeTestComponent implements OnInit {
       title: this.selectedTest.title, 
       uid: this.selectedTest.uid,
     })
+    debugger;
     this.myQuiz.setControl('questions', this.setExistingQuestions());
 
     console.log(this.myQuiz.value)  
@@ -52,17 +54,17 @@ export class TakeTestComponent implements OnInit {
 setExistingQuestions() :FormArray{
   const formArray = new FormArray([]);
   this.selectedTest.questions.forEach(q =>{
-    formArray.push(
-      this.fb.group({
-        question: q.question,
-        option1: q.option1,
-        option2: q.option2,
-        option3: q.option3,
-        option4: q.option4,
-        correctAnswer: ''
-      }))   
+   let question =  this.fb.group({
+      question: q.question,
+      option1: q.option1,
+      option2: q.option2,
+      option3: q.option3,
+      option4: q.option4,
+      correctAnswer: ''
+    });
+    formArray.push(question)   
   })
-
+  
   return formArray;
 
 }
