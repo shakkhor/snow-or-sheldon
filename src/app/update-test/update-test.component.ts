@@ -19,6 +19,8 @@ export class UpdateTestComponent implements OnInit {
   selectedTest;
   myQuiz : FormGroup;
 
+  id = + new Date()
+
   
   constructor(
     private loginService : LoginService,
@@ -42,6 +44,7 @@ export class UpdateTestComponent implements OnInit {
   
 
     this.myQuiz.patchValue({
+      id: this.selectedTest.id,
       title: this.selectedTest.title, 
       uid: this.selectedTest.uid,
     })
@@ -80,6 +83,7 @@ setExistingQuestions() :FormArray{
 
      
    this.myQuiz = this.fb.group({
+    id: [''],
     title : ['', Validators.required],
     uid : ['', Validators.required],
     questions : this.fb.array([])
@@ -123,17 +127,32 @@ onSubmit(){
  // this.myQuiz. = this.user.uid; 
  let sub = this.myQuiz.value;
  sub.uid = this.user.uid
+ let date = new Date()
+ sub.id = date.valueOf()
   sub = JSON.parse(JSON.stringify(sub))
   
-  console.log("subs",sub);
-   this.tests.push(sub)
+  console.log("subs",date);
+  
+  // console.log(sub)
+  //  this.tests.push(sub)
   //console.log(this.user.uid);
 }
 
 
 update()
 {
-  console.log(this.selectedTest)
+  let sub = this.myQuiz.value; 
+  sub = JSON.parse(JSON.stringify(sub))
+  
+  console.log("subs",sub);
+  this.db.object('/tests/' + sub.id).update(sub)
+  
+}
+
+delete(){
+  let sub = this.myQuiz.value;
+  sub = JSON.parse(JSON.stringify(sub))
+  this.db.object('/tests/' + sub.id).remove()
 }
 
 }

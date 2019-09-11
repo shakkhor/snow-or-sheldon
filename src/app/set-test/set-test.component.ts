@@ -14,6 +14,7 @@ export class SetTestComponent implements OnInit {
   user : firebase.User;
   myQuiz : FormGroup;
   tests : AngularFireList <any>;
+  id = + new Date()
   constructor(
     private loginService : LoginService,
     private router : Router,
@@ -38,6 +39,7 @@ export class SetTestComponent implements OnInit {
 
 
    this.myQuiz = this.fb.group({
+     id: [''],
      title : ['', Validators.required],
      uid : ['', Validators.required],
      questions : this.fb.array([])
@@ -71,10 +73,11 @@ export class SetTestComponent implements OnInit {
   // this.myQuiz. = this.user.uid; 
   let sub = this.myQuiz.value;
   sub.uid = this.user.uid
+  sub.id = +new Date()
    sub = JSON.parse(JSON.stringify(sub))
    
    console.log("subs",sub);
-    this.tests.push(sub)
+   this.db.object('/tests/' + sub.id).set(sub)
    //console.log(this.user.uid);
  }
 }
