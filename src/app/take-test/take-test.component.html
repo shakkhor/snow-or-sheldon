@@ -1,4 +1,4 @@
-<mat-form-field>
+<mat-form-field fxLayout="row" fxLayoutAlign="center">
   <mat-label>Setect a test</mat-label>
   <mat-select [(value)]="test" (selectionChange)="onSelectionChange(test)">
     <mat-option *ngFor="let test of tests" [value]="test"
@@ -12,7 +12,7 @@
     <!-- Value :{{myQuiz.value | json}} -->
 
     <!-- <hr /> -->
-
+    <!-- 
     <mat-form-field class="full" fxLayout="row" fxLayoutAlign="center">
       <input
         matInput
@@ -20,12 +20,13 @@
         placeholder="Quiz Title"
         formControlName="title"
         readonly
+        
       />
       <mat-error
         *ngIf="myQuiz.controls['title'].touched && myQuiz.controls['title'].errors.required"
         >Must enter a title</mat-error
       >
-    </mat-form-field>
+    </mat-form-field> -->
     <div *ngIf="selectedTest">
       <!-- <div *ngFor="let question of selectedTest.questions">
         <mat-card class="center"> {{question.question}}</mat-card>

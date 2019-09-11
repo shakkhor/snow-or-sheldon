@@ -89,6 +89,7 @@ setExistingQuestions() :FormArray{
    
  }
  openDialog(whoAmI){
+   debugger
    this.digalog.open(DialogComponent,{
      data:{
        result : whoAmI
@@ -112,7 +113,7 @@ onSubmit(){
  let  answers = this.myQuiz.value.questions
  let i = 0;
  let length = answers.length
- console.log(length)
+//  console.log(length)
  let rightAnswers = 0;
  this.selectedTest.questions.forEach(q =>{
    if(q.correctAnswer == answers[i++].correctAnswer){
@@ -120,15 +121,17 @@ onSubmit(){
    }
  })
  console.log(rightAnswers)
- if(rightAnswers/length >= 0.8)
+ let check = (rightAnswers/length);
+ console.log(check)
+ if(check >= 0.8)
  {
   this.openDialog('sheldon');
- }else if(rightAnswers/length <= 0.4)
+ }else if(check <= 0.4)
  {
-  this.openDialog('You are A Snow');
+  this.openDialog('snow');
  }
  else{
-  this.openDialog('You are Normal');
+  this.openDialog('normal');
  }
 
  

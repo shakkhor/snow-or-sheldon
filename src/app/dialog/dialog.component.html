@@ -1,9 +1,26 @@
 <h2 mat-dialog-title>Your Test Result</h2>
+<mat-dialog-content *ngIf="data.result=='sheldon'">
+  <div>
+    <img src="../../assets/img/sheldon.jpg" height="160" width="160" />
 
-<mat-dialog-content *ngIf="data.result==sheldon">
-  <p>hellos</p>
+    <h3>You are a true Sheldon</h3>
+    <h3>who is very knowledgeable</h3>
+  </div>
 </mat-dialog-content>
-<!-- 
-<mat-dialog-content>
-  <p>{{data.result}}</p>
-</mat-dialog-content> -->
+<mat-dialog-content *ngIf="data.result=='snow'">
+  <div>
+    <img src="../../assets/img/snow.PNG" height="160" width="160" />
+
+    <h3>You are a true snow</h3>
+    <h3>who knows nothing</h3>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-content *ngIf="data.result=='normal'">
+  <div>
+    <img src="../../assets/img/normal.jpg" height="160" width="160" />
+
+    <h3>You are normal</h3>
+    <h3>Like this Lily here.</h3>
+  </div>
+</mat-dialog-content>
