@@ -40,8 +40,8 @@ export class SetTestComponent implements OnInit {
 
    this.myQuiz = this.fb.group({
      id: [''],
-     title : ['', Validators.required],
-     uid : ['', Validators.required],
+     title :  ['', Validators.required],
+     uid : ['', ],
      questions : this.fb.array([])
    })
  }
@@ -49,19 +49,17 @@ export class SetTestComponent implements OnInit {
  get questionForms(){
    return this.myQuiz.get('questions') as FormArray
  }
-
  addQuestion(){
-   const question = this.fb.group({
-     question: new FormControl( ['', Validators.required]),
-     option1: new FormControl( ['', Validators.required]),
-     option2: new FormControl( ['', Validators.required]),
-     option3: new FormControl( ['', Validators.required]),
-     option4: new FormControl( ['', Validators.required]),
-     correctAnswer: new FormControl( ['', Validators.required])
-   })
-   this.questionForms.push(question)
- }
-
+  const question = this.fb.group({
+    question:  ['', Validators.required],
+    option1:  ['', Validators.required],
+    option2:  ['', Validators.required],
+    option3:  ['', Validators.required],
+    option4:  ['', Validators.required],
+    correctAnswer:  ['', Validators.required]
+  })
+  this.questionForms.push(question)
+}
  deleteQuestion(i)
  {
    console.log(i)

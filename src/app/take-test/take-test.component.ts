@@ -46,7 +46,7 @@ export class TakeTestComponent implements OnInit {
       title: this.selectedTest.title, 
       uid: this.selectedTest.uid,
     })
-    debugger;
+    // debugger;
     this.myQuiz.setControl('questions', this.setExistingQuestions());
 
     console.log(this.myQuiz.value)  

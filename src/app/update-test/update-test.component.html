@@ -1,7 +1,10 @@
 <mat-form-field>
   <mat-label>Setect a test</mat-label>
   <mat-select [(value)]="test" (selectionChange)="onSelectionChange(test)">
-    <mat-option *ngFor="let test of tests" [value]="test"
+    <mat-option
+      *ngFor="let test of tests"
+      [value]="test"
+      [disabled]="test.uid!=user.uid"
       >{{test.title}}</mat-option
     >
   </mat-select>
@@ -130,7 +133,13 @@
     </div>
   </form>
 
-  <button *ngIf="test" mat-raised-button color="primary" (click)="update()">
+  <button
+    *ngIf="test"
+    mat-raised-button
+    color="primary"
+    (click)="update()"
+    [disabled]="myQuiz.invalid"
+  >
     Update
   </button>
   <button *ngIf="test" mat-raised-button color="warn" (click)="delete()">
