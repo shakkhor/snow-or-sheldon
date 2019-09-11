@@ -127,7 +127,12 @@
           Delete question
         </button>
       </div>
-      <button mat-raised-button color="primary" (click)="addQuestion()">
+      <button
+        *ngIf="test"
+        mat-raised-button
+        color="primary"
+        (click)="addQuestion()"
+      >
         Add question
       </button>
     </div>

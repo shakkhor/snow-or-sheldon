@@ -147,13 +147,14 @@ update()
   
   console.log("subs",sub);
   this.db.object('/tests/' + sub.id).update(sub)
-  
+  this.myQuiz.reset()
 }
 
 delete(){
   let sub = this.myQuiz.value;
   sub = JSON.parse(JSON.stringify(sub))
   this.db.object('/tests/' + sub.id).remove()
+  this.myQuiz.reset()
 }
 
 }

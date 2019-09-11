@@ -76,6 +76,7 @@ export class SetTestComponent implements OnInit {
    
    console.log("subs",sub);
    this.db.object('/tests/' + sub.id).set(sub)
+   this.myQuiz.reset()
    //console.log(this.user.uid);
  }
 }
