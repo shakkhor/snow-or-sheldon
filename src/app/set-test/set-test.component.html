@@ -22,116 +22,119 @@
     </mat-form-field>
 
     <div formArrayName="questions">
-      <div
-        *ngFor=" let qustionFrom of myQuiz.controls['questions'].controls; let i=index "
-        [formGroupName]="i"
-        fxLayout="row"
-        fxLayoutAlign="center"
-      >
-        <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="question"
-            formControlName="question"
-            required
-          />
-          <!-- <mat-error
+      <mat-card *ngIf="questionForms">
+        <div
+          *ngFor=" let qustionFrom of myQuiz.controls['questions'].controls; let i=index "
+          [formGroupName]="i"
+          fxLayout="row"
+          fxLayoutAlign="center"
+        >
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="question"
+              formControlName="question"
+              required
+            />
+            <!-- <mat-error
             *ngIf="qustionFrom.controls['question'].touched && qustionFrom.controls['question'].errors.required"
           >
             Question is requred
           </mat-error> -->
-        </mat-form-field>
+          </mat-form-field>
 
-        <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="option1"
-            formControlName="option1"
-            required
-          />
-          <!-- <mat-error
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="option1"
+              formControlName="option1"
+              required
+            />
+            <!-- <mat-error
             *ngIf="qustionFrom.controls['option1'].touched && qustionFrom.controls['option1'].errors.required"
           >
             All options must be provied
           </mat-error> -->
-        </mat-form-field>
-        <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="option2"
-            formControlName="option2"
-            required
-          />
-          <!-- <mat-error
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="option2"
+              formControlName="option2"
+              required
+            />
+            <!-- <mat-error
             *ngIf="qustionFrom.controls['option2'].touched && qustionFrom.controls['option2'].errors.required"
           >
             All options must be provied
           </mat-error> -->
-        </mat-form-field>
-        <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="option3"
-            formControlName="option3"
-            required
-          />
-          <!-- <mat-error
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="option3"
+              formControlName="option3"
+              required
+            />
+            <!-- <mat-error
             *ngIf="qustionFrom.controls['option3'].touched && qustionFrom.controls['option3'].errors.required"
           >
             All options must be provied
           </mat-error> -->
-        </mat-form-field>
-        <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="option4"
-            formControlName="option4"
-            required
-          />
-          <!-- <mat-error
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="option4"
+              formControlName="option4"
+              required
+            />
+            <!-- <mat-error
             *ngIf="qustionFrom.controls['option4'].touched && qustionFrom.controls['option4'].errors.required"
         
             All options must be provied
           </mat-error>  > -->
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Correct answer</mat-label>
-          <mat-select formControlName="correctAnswer">
-            <mat-option value="a">
-              option1
-            </mat-option>
-            <mat-option value="b">
-              option2
-            </mat-option>
-            <mat-option value="c">
-              option3
-            </mat-option>
-            <mat-option value="d">
-              option4
-            </mat-option>
-          </mat-select>
-          <!-- <mat-error
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Correct answer</mat-label>
+            <mat-select formControlName="correctAnswer">
+              <mat-option value="a">
+                option1
+              </mat-option>
+              <mat-option value="b">
+                option2
+              </mat-option>
+              <mat-option value="c">
+                option3
+              </mat-option>
+              <mat-option value="d">
+                option4
+              </mat-option>
+            </mat-select>
+            <!-- <mat-error
             *ngIf="qustionFrom.controls['correctAnswer'].touched && qustionFrom.controls['correctAnswer'].errors.required"
           >
             Correct answer must be choosen
           </mat-error> -->
-        </mat-form-field>
-        <button mat-raised-button color="warn" (click)="deleteQuestion(i)">
-          Delete question
-        </button>
-      </div>
-      <button mat-raised-button color="primary" (click)="addQuestion()">
-        Add question
-      </button>
+          </mat-form-field>
+          <button mat-raised-button color="warn" (click)="deleteQuestion(i)">
+            Delete question
+          </button>
+        </div>
+      </mat-card>
     </div>
   </form>
-
-  <button mat-raised-button (click)="onSubmit()" [disabled]="myQuiz.invalid">
-    Submit
-  </button>
+  <div fxLayout="row" fxLayoutAlign="center">
+    <button mat-raised-button color="primary" (click)="addQuestion()">
+      Add question
+    </button>
+    <button mat-raised-button (click)="onSubmit()" [disabled]="myQuiz.invalid">
+      Submit
+    </button>
+  </div>
 </div>

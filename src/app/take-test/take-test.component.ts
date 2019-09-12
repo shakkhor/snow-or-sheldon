@@ -89,7 +89,7 @@ setExistingQuestions() :FormArray{
    
  }
  openDialog(whoAmI){
-   debugger
+  //  debugger
    this.digalog.open(DialogComponent,{
      data:{
        result : whoAmI
@@ -108,6 +108,11 @@ setExistingQuestions() :FormArray{
 }
 
 
+reloadComponent() {
+  this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  this.router.onSameUrlNavigation = 'reload';
+  this.router.navigate(['/update-test']);
+}
 
 onSubmit(){
  let  answers = this.myQuiz.value.questions
@@ -133,6 +138,7 @@ onSubmit(){
  else{
   this.openDialog('normal');
  }
+ this.reloadComponent()
 
  
 

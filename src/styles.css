@@ -20,4 +20,12 @@ body {
     background-size: cover;
     box-shadow: none;
  }
- 
+ body{
+   font-family: 'Comic Sans MS';
+   background-image: url("./assets/img/brick.jpg");
+   background-repeat: no-repeat;
+   background-size: 100%;
+
+
+   
+}

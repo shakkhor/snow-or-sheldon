@@ -138,7 +138,11 @@ onSubmit(){
   //  this.tests.push(sub)
   //console.log(this.user.uid);
 }
-
+reloadComponent() {
+  this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  this.router.onSameUrlNavigation = 'reload';
+  this.router.navigate(['/update-test']);
+}
 
 update()
 {
@@ -148,6 +152,8 @@ update()
   console.log("subs",sub);
   this.db.object('/tests/' + sub.id).update(sub)
   this.myQuiz.reset()
+  this.myQuiz.reset()
+  this.reloadComponent()
 }
 
 delete(){
@@ -155,6 +161,8 @@ delete(){
   sub = JSON.parse(JSON.stringify(sub))
   this.db.object('/tests/' + sub.id).remove()
   this.myQuiz.reset()
+  this.myQuiz.reset()
+ this.reloadComponent()
 }
 
 }

@@ -65,7 +65,11 @@ export class SetTestComponent implements OnInit {
    console.log(i)
    this.questionForms.removeAt(i);
  }
-
+ reloadComponent() {
+  this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  this.router.onSameUrlNavigation = 'reload';
+  this.router.navigate(['/set-test']);
+}
 
  onSubmit(){
   // this.myQuiz. = this.user.uid; 
@@ -77,6 +81,7 @@ export class SetTestComponent implements OnInit {
    console.log("subs",sub);
    this.db.object('/tests/' + sub.id).set(sub)
    this.myQuiz.reset()
+  this.reloadComponent()
    //console.log(this.user.uid);
  }
 }
