@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { DialogComponent } from '../dialog/dialog.component';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-update-test',
@@ -18,6 +19,7 @@ export class UpdateTestComponent implements OnInit {
   JSON = JSON;
   selectedTest;
   myQuiz : FormGroup;
+  sub : any;
 
   id = + new Date()
 
@@ -27,7 +29,7 @@ export class UpdateTestComponent implements OnInit {
     private router : Router,
     private fb : FormBuilder,
     private db : AngularFireDatabase,
-    private digalog : MatDialog
+    private dialog : MatDialog
   ) { 
     this.db.list('/tests')
     .valueChanges()
@@ -91,9 +93,23 @@ setExistingQuestions() :FormArray{
   })
    
  }
- openDialog(){
-   this.digalog.open(DialogComponent)
- }
+ openDialog(): void {
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    data: "Do you really want to delete this test?"
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    if(result) {
+      console.log('Yes clicked');
+      this.db.object('/tests/' + this.sub.id).remove()
+      .then(result=>{
+        this.reloadComponent()
+      })
+      .catch(err=>{
+        console.log(err)
+      })  
+    }
+  });
+}
 
 
 
@@ -150,19 +166,15 @@ update()
   sub = JSON.parse(JSON.stringify(sub))
   
   console.log("subs",sub);
-  this.db.object('/tests/' + sub.id).update(sub)
-  this.myQuiz.reset()
-  this.myQuiz.reset()
+  this.db.object('/tests/' + sub.id).update(sub) 
   this.reloadComponent()
 }
 
 delete(){
-  let sub = this.myQuiz.value;
-  sub = JSON.parse(JSON.stringify(sub))
-  this.db.object('/tests/' + sub.id).remove()
-  this.myQuiz.reset()
-  this.myQuiz.reset()
- this.reloadComponent()
+  this.sub = this.myQuiz.value;
+  this.sub = JSON.parse(JSON.stringify(this.sub))
+  this.openDialog()
+
 }
 
 }

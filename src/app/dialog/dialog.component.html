@@ -3,18 +3,14 @@
   <div>
     <img src="../../assets/img/sheldon.jpg" height="160" width="160" />
 
-    <h3>You are Sheldon who is</h3>
-    <h3>very arrogant and painful</h3>
-    <h3>sometimes but knows his</h3>
-    <h3>stuff very well</h3>
+    <h5>Your type is <strong>SHELDON</strong></h5>
   </div>
 </mat-dialog-content>
 <mat-dialog-content *ngIf="data.result=='snow'">
   <div>
     <img src="../../assets/img/snow.PNG" height="160" width="160" />
 
-    <h3>You are a true snow</h3>
-    <h3>who knows nothing</h3>
+    <h5>Your type is <strong>SNOW</strong></h5>
   </div>
 </mat-dialog-content>
 
@@ -22,7 +18,10 @@
   <div>
     <img src="../../assets/img/normal.jpg" height="160" width="160" />
 
-    <h3>You are normal</h3>
-    <h3>Like this Lily here.</h3>
+    <h5>You are normal</h5>
   </div>
 </mat-dialog-content>
+
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>
+</div>

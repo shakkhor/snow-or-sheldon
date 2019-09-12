@@ -1,57 +1,61 @@
-<mat-toolbar id="mainToolbar" color="primary">
-  Snow or Sheldon?
-  <span class="toolbar-spacer"></span>
+<div class="app-toolbar">
+  <mat-toolbar id="mainToolbar" color="primary">
+    <a routerLink="/take-test"
+      ><button mat-button><strong> Snow or Sheldon?</strong></button></a
+    >
+    <span class="toolbar-spacer"></span>
 
-  <a routerLink="/take-test"
-    ><button mat-button><strong>Take Test</strong></button></a
-  >
-  <!-- <button mat-button *ngIf="!user" [matMenuTriggerFor]="loginDropdDown">
+    <a routerLink="/take-test"
+      ><button mat-button><strong>Take Test</strong></button></a
+    >
+    <!-- <button mat-button *ngIf="!user" [matMenuTriggerFor]="loginDropdDown">
     <strong> Login </strong>
   </button> -->
-  <a routerLink="/set-test"
-    ><button mat-button *ngIf="user"><strong>Set Test</strong></button></a
-  >
-  <a routerLink="/update-test"
-    ><button mat-button *ngIf="user"><strong>Update Test</strong></button></a
-  >
-  <a routerLink="/login"
-    ><button mat-button *ngIf="!user"><strong>Sign in</strong></button></a
-  >
-  <button
-    mat-mini-fab
-    [matMenuTriggerFor]="avatarDropDown"
-    color="primary"
-    class="toolbar-avatar"
-    [ngStyle]="{ 'background-image': 'url(' + user?.photoURL + ')'}"
-  ></button>
-</mat-toolbar>
+    <a routerLink="/set-test"
+      ><button mat-button *ngIf="user"><strong>Set Test</strong></button></a
+    >
+    <a routerLink="/update-test"
+      ><button mat-button *ngIf="user"><strong>Update Test</strong></button></a
+    >
+    <a routerLink="/login"
+      ><button mat-button *ngIf="!user"><strong>Sign in</strong></button></a
+    >
+    <button
+      mat-mini-fab
+      [matMenuTriggerFor]="avatarDropDown"
+      color="primary"
+      class="toolbar-avatar"
+      [ngStyle]="{ 'background-image': 'url(' + user?.photoURL + ')'}"
+    ></button>
+  </mat-toolbar>
 
-<mat-menu #avatarDropDown="matMenu">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>{{ user?.displayName }}</mat-card-title>
-      <mat-card-subtitle>{{ user?.email }}</mat-card-subtitle>
-    </mat-card-header>
-  </mat-card>
+  <mat-menu #avatarDropDown="matMenu">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ user?.displayName }}</mat-card-title>
+        <mat-card-subtitle>{{ user?.email }}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
 
-  <button mat-menu-item (click)="logout()">
-    <mat-icon>exit_to_app</mat-icon>
-    <span>Sign out</span>
-  </button>
-</mat-menu>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Sign out</span>
+    </button>
+  </mat-menu>
 
-<!-- login drop down -->
-<!-- login drop down -->
-<!-- login drop down -->
+  <!-- login drop down -->
+  <!-- login drop down -->
+  <!-- login drop down -->
 
-<!-- <mat-menu #loginDropdDown="matMenu">
+  <!-- <mat-menu #loginDropdDown="matMenu">
   <app-signIn></app-signIn>
   <button mat-menu-item (click)="loginGoogle()">
     <mat-icon>exit_to_app</mat-icon>
     <span>Login with google</span>
   </button> -->
-<!-- <button mat-menu-item (click)="signup()">
+  <!-- <button mat-menu-item (click)="signup()">
     <mat-icon>exit_to_app</mat-icon>
     <span>New Here? </span>
   </button> -->
-<!-- </mat-menu> -->
+  <!-- </mat-menu> -->
+</div>

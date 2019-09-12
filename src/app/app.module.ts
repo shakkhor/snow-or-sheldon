@@ -20,6 +20,7 @@ import { UpdateTestComponent } from './update-test/update-test.component';
 import { DialogComponent } from './dialog/dialog.component';
 import {FormsModule} from '@angular/forms'
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -32,10 +33,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     SignInComponent,
     SignUpComponent,
     UpdateTestComponent,
-    DialogComponent
+    DialogComponent,
+    ConfirmDialogComponent
   ],
   entryComponents: [
-    DialogComponent
+    DialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

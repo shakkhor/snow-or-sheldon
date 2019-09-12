@@ -1,18 +1,19 @@
 <h2 fxLayout="row" fxLayoutAlign="center">
   Select a test to update or remove.
 </h2>
-
-<mat-form-field fxLayout="row" fxLayoutAlign="center">
-  <mat-label>Setect a test</mat-label>
-  <mat-select [(value)]="test" (selectionChange)="onSelectionChange(test)">
-    <mat-option
-      *ngFor="let test of tests"
-      [value]="test"
-      [disabled]="test.uid!=user.uid"
-      >{{test.title}}</mat-option
-    >
-  </mat-select>
-</mat-form-field>
+<div fxLayout="row" fxLayoutAlign="center">
+  <mat-form-field>
+    <mat-label>Setect a test</mat-label>
+    <mat-select [(value)]="test" (selectionChange)="onSelectionChange(test)">
+      <mat-option
+        *ngFor="let test of tests"
+        [value]="test"
+        [disabled]="test.uid!=user.uid"
+        >{{test.title}}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+</div>
 
 <div class="set-questions">
   <form [formGroup]="myQuiz">

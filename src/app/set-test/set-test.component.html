@@ -6,20 +6,21 @@
     <!-- <mat-form-field>
       <input matInput formControlName="id" value="kjahdksa" />
     </mat-form-field> -->
-
-    <mat-form-field fxLayout="row" fxLayoutAlign="center">
-      <input
-        matInput
-        type="text"
-        placeholder="Quiz Title"
-        formControlName="title"
-        required
-      />
-      <!-- <mat-error
-        *ngIf="myQuiz.controls['title'].touched && myQuiz.controls['title'].errors.required"
-        >Must enter a title</mat-error
-      > -->
-    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="Quiz Title"
+          formControlName="title"
+          required
+        />
+        <!-- <mat-error
+      *ngIf="myQuiz.controls['title'].touched && myQuiz.controls['title'].errors.required"
+      >Must enter a title</mat-error
+    > -->
+      </mat-form-field>
+    </div>
 
     <div formArrayName="questions">
       <mat-card *ngIf="questionForms">
