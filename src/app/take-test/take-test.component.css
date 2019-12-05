@@ -7,7 +7,10 @@ mat-form-field{
 
 mat-card{
     margin-left: 20px; 
-    margin-right: 20px 
+    margin-right: 20px ;
+    background-color: #E4F5FF; 
+    opacity: 0.85;
+    font-weight: 600;
 }
 input{
 width: 250px;
@@ -18,3 +21,4 @@ width: 250px;
     text-align: center;
     width: 500px;
 }
+

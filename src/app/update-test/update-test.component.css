@@ -10,3 +10,10 @@
  button{
     margin: 20px;
  }
+
+ mat-card{
+  
+   background-color: #E4F5FF; 
+   opacity: 0.8;
+   font-weight: 600;
+}

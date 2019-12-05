@@ -70,6 +70,7 @@ export class SetTestComponent implements OnInit {
   this.router.onSameUrlNavigation = 'reload';
   this.router.navigate(['/set-test']);
 }
+  
 
  onSubmit(){
   // this.myQuiz. = this.user.uid; 
@@ -84,4 +85,6 @@ export class SetTestComponent implements OnInit {
   this.reloadComponent()
    //console.log(this.user.uid);
  }
+
+ 
 }

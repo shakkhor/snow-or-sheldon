@@ -111,7 +111,7 @@ setExistingQuestions() :FormArray{
 reloadComponent() {
   this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   this.router.onSameUrlNavigation = 'reload';
-  this.router.navigate(['/update-test']);
+  this.router.navigate(['/take-test']);
 }
 
 onSubmit(){
